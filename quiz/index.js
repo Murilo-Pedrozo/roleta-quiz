@@ -165,5 +165,7 @@ document.addEventListener("DOMContentLoaded", function () {
     window.location.href = "../roleta/index.html";
   }
 
-  window.comecarJogo = comecarJogo;  // ✅ torna disponível no inline
+  window.comecarJogo = comecarJogo;
+
+  comecarJogo();
 });
