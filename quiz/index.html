@@ -28,17 +28,19 @@
     
     <script>
   const urlParams = new URLSearchParams(window.location.search);
-  const valor = parseInt(urlParams.get('valor'));  // ✅ CONVERTE PARA NÚMERO
-  var acerto = urlParams.get('acerto');
-  var erro = urlParams.get('erro');
 
-  var elemento_acerto = document.getElementById( "acerto" );
-  var elemento_erro = document.getElementById( "erro" );
+  const valor = parseInt(urlParams.get('valor'));
+  var acerto = parseInt(urlParams.get('acerto')) || 0;
+  var erro = parseInt(urlParams.get('erro')) || 0;
+
+  var elemento_acerto = document.getElementById("acerto");
+  var elemento_erro = document.getElementById("erro");
 
   elemento_acerto.value = acerto;
   elemento_erro.value = erro;
 
-  indexQuest = valor - 1;  // ✅ AJUSTA: a roleta vai de 1 a 8, mas o array é de 0 a 6
+  indexQuest = valor - 1;  // Ajusta de 1-7 para índice 0-6
+
   comecarJogo();
 </script>
 </body>
