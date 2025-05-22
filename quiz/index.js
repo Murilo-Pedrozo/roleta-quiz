@@ -1,5 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
 
+  const questoesRecip = document.querySelector(".questoesRec");
+  const textoQuestoes = document.querySelector(".questao");
+  const respostaRecip = document.querySelector(".respostaRec");
+
   // Pegando params da URL
   const urlParams = new URLSearchParams(window.location.search);
   const valor = parseInt(urlParams.get('valor')) || 1;
@@ -79,9 +83,6 @@ document.addEventListener("DOMContentLoaded", function () {
     },
   ];
 
-  const questoesRecip = document.querySelector(".questoesRec");
-  const textoQuestoes = document.querySelector(".questao");
-  const respostaRecip = document.querySelector(".respostaRec");
 
   function comecarJogo() {
     if (isNaN(window.indexQuest) || window.indexQuest < 0) {
