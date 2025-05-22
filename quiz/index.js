@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-  let indexQuest = 0;
+  if (typeof window.indexQuest === "undefined") {
+    window.indexQuest = 0;
+  }
 
   const questoes = [
     {
@@ -167,5 +169,4 @@ document.addEventListener("DOMContentLoaded", function () {
 
   window.comecarJogo = comecarJogo;
 
-  comecarJogo();
 });
