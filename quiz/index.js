@@ -1,8 +1,17 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-  if (typeof window.indexQuest === "undefined") {
-    window.indexQuest = 0;
-  }
+  // Pegando params da URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const valor = parseInt(urlParams.get('valor')) || 1;
+  const acertoParam = parseInt(urlParams.get('acerto')) || 0;
+  const erroParam = parseInt(urlParams.get('erro')) || 0;
+
+  // Atualiza os inputs escondidos
+  document.getElementById("acerto").value = acertoParam;
+  document.getElementById("erro").value = erroParam;
+
+  // Define a questão atual (indexQuest)
+  window.indexQuest = valor - 1;
 
   const questoes = [
     {
@@ -75,8 +84,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const respostaRecip = document.querySelector(".respostaRec");
 
   function comecarJogo() {
-    if (indexQuest == null || isNaN(indexQuest)) {
-      indexQuest = 0;
+    if (isNaN(window.indexQuest) || window.indexQuest < 0) {
+      window.indexQuest = 0;
     }
     questoesRecip.classList.remove("esconder");
     proximaQuest();
@@ -85,29 +94,24 @@ document.addEventListener("DOMContentLoaded", function () {
   function proximaQuest() {
     resetState();
 
-    if (questoes.length === indexQuest) {
+    if (window.indexQuest >= questoes.length) {
       return finishGame();
     }
 
-    if (indexQuest === undefined) {
-      indexQuest = 0;
-    }
+    textoQuestoes.textContent = questoes[window.indexQuest].questao;
+    textoQuestoes.classList.remove("esconder");
 
-    if (questoes[indexQuest] != undefined) {
-      textoQuestoes.textContent = questoes[indexQuest].questao;
-      textoQuestoes.classList.remove("esconder");
-      questoes[indexQuest].resposta.forEach(resposta => {
-        const novaResp = document.createElement("button");
-        novaResp.classList.add("button", "resposta");
-        novaResp.textContent = resposta.texto;
-        if (resposta.correta) {
-          novaResp.dataset.correta = resposta.correta;
-        }
-        respostaRecip.appendChild(novaResp);
+    questoes[window.indexQuest].resposta.forEach(resposta => {
+      const novaResp = document.createElement("button");
+      novaResp.classList.add("button", "resposta");
+      novaResp.textContent = resposta.texto;
+      if (resposta.correta) {
+        novaResp.dataset.correta = "true";
+      }
+      respostaRecip.appendChild(novaResp);
 
-        novaResp.addEventListener("click", selecioneResp);
-      });
-    }
+      novaResp.addEventListener("click", selecioneResp);
+    });
   }
 
   function resetState() {
@@ -140,15 +144,24 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
+    // Atualiza valores ocultos
+    document.getElementById("acerto").value = acerto;
+    document.getElementById("erro").value = erro;
+
+    // Avança para próxima questão depois de 3 segundos
     setTimeout(function () {
-      window.location.href = "../roleta/index.html?acerto=" + acerto + "&erro=" + erro;
+      window.indexQuest++;
+      if (window.indexQuest >= questoes.length) {
+        finishGame();
+      } else {
+        proximaQuest();
+      }
     }, 3000);
   }
 
   function finishGame() {
     const acerto = document.getElementById("acerto").value;
     const erro = document.getElementById("erro").value;
-
     const totalQuestions = parseInt(acerto) + parseInt(erro);
 
     questoesRecip.innerHTML = `
@@ -159,7 +172,6 @@ document.addEventListener("DOMContentLoaded", function () {
         Girar novamente
       </button>
     `;
-
     questoesRecip.classList.remove("esconder");
   }
 
@@ -167,6 +179,8 @@ document.addEventListener("DOMContentLoaded", function () {
     window.location.href = "../roleta/index.html";
   }
 
-  window.comecarJogo = comecarJogo;
+  window.returnToFolder = returnToFolder;
+
+  comecarJogo();
 
 });
