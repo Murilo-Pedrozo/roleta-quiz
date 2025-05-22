@@ -1,3 +1,5 @@
+let indexQuest = 0;
+
 const questoes = [
   {
     questao: "Qual é o valor de 2³ ",
@@ -49,7 +51,7 @@ const questoes = [
     resposta: [
       { texto: 'x^2/2', correta: true },
       { texto: 'x^3/3', correta: false },
-      { texto: 'x', correct: false },
+      { texto: 'x', correta: false },
       { texto: '1/x', correta: false }
     ]
   },
@@ -71,8 +73,11 @@ const respostaRecip = document.querySelector(".respostaRec")
 const resposta = document.querySelectorAll(".resposta")
 
 function comecarJogo() {
-  questoesRecip.classList.remove("esconder")
-  proximaQuest()
+  if (indexQuest == null || isNaN(indexQuest)) {
+    indexQuest = 0;
+  }
+  questoesRecip.classList.remove("esconder");
+  proximaQuest();
 }
 
 function proximaQuest() {

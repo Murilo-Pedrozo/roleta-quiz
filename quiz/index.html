@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="stylesheet" href="style.css">
-  <script src="index.js" async></script>
+  <script src="index.js"></script>
 
   <title>Quiz </title>
 </head>
@@ -15,10 +15,10 @@
     <div class="questoesRec esconder">
       <span class="questao esconder"></span> 
       <div class="respostaRec">
-        <button class="resposta button">Resposta 2</button>
+        <!--<button class="resposta button">Resposta 2</button>
         <button class="resposta button">Resposta 1</button>
         <button class="resposta button">Resposta 3</button>
-        <button class="resposta button">Resposta 4</button>
+        <button class="resposta button">Resposta 4</button>-->
       </div>
     </div> 
   </div>
@@ -28,7 +28,6 @@
     
     <script>
   const urlParams = new URLSearchParams(window.location.search);
-
   const valor = parseInt(urlParams.get('valor'));
   var acerto = parseInt(urlParams.get('acerto')) || 0;
   var erro = parseInt(urlParams.get('erro')) || 0;
@@ -39,7 +38,7 @@
   elemento_acerto.value = acerto;
   elemento_erro.value = erro;
 
-  indexQuest = valor - 1;  // Ajusta de 1-7 para índice 0-6
+  indexQuest = valor - 1;  // ajustar para índice correto
 
   comecarJogo();
 </script>
