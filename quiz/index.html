@@ -6,8 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="stylesheet" href="style.css">
-  <script src="index.js"></script>
-
   <title>Quiz </title>
 </head>
 <body>
@@ -26,7 +24,8 @@
   <input type="hidden" id="acerto" value="0"/>
     <input type="hidden" id="erro" value="0"/> 
     
-    <script>
+    <script src="index.js"></script>
+<script>
   const urlParams = new URLSearchParams(window.location.search);
   const valor = parseInt(urlParams.get('valor'));
   var acerto = parseInt(urlParams.get('acerto')) || 0;
@@ -38,7 +37,9 @@
   elemento_acerto.value = acerto;
   elemento_erro.value = erro;
 
-  indexQuest = valor - 1;  // ajustar para índice correto
+  indexQuest = valor - 1;
+
+  console.log("indexQuest:", indexQuest);
 
   comecarJogo();
 </script>
