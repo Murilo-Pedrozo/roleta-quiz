@@ -4,8 +4,9 @@ let numeroSelct = Math.ceil(Math.random() * 6)
 let angulo = (360 / 8) * (numeroSelct - 1) + (360 * 5);
 
 girarBtn.addEventListener("click", function () {
+  let numeroSelct = Math.ceil(Math.random() * 7); // ✅ de 1 a 7, igual ao total de perguntas
+  let angulo = (360 / 8) * (numeroSelct - 1) + (360 * 5);
   rodar.style.transform = `rotate(${angulo}deg)`;
-  valor = Math.ceil(Math.random() * 3600)
 
 
   let acerto = document.getElementById("acerto").value;
