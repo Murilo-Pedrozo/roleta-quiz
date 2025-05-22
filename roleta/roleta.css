@@ -1,0 +1,138 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poetsen+One&family=Reddit+Sans+Condensed:wght@200..900&display=swap');
+
+:root{
+ --cor0: #1f1d1d;
+ --cor1: #f9f9f9;
+ --cor2: #1d37c5;
+ --fonte-padrao:"Reddit Sans Condensed", sans-serif;
+ --fonte-destaque:"Poetsen One", sans-serif;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--fonte-destaque);
+}
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+  min-height: 100vh;
+  background: var(--cor0);
+}
+.recipiente{
+  position: relative;
+  width: 400px;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.recipiente .girarBtn{
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background: var(--cor1);
+  border-radius: 50%;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--cor0);
+  letter-spacing: 0.1em;
+  border: 4px solid rgba(0, 0, 0, 0.75);
+  cursor: pointer;
+  user-select: none;
+}
+.recipiente .girarBtn::before{
+  content: '';
+  position: absolute;
+  top: -20px;
+  width: 20px;
+  height: 30px;
+  background: var(--cor1);
+  clip-path: polygon(50% 0%, 11% 100%, 93% 100%);
+
+}
+.recipiente .rodar{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--cor0);
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 0 0 5px #333,
+  0 0 0 15px var(--cor1),
+  0 0 0 18px;
+  transition: transform 5s ease-in-out;
+}
+.recipiente .rodar .numero{
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  background: var(--clr);
+  transform-origin: bottom right;
+  transform: rotate(calc(45deg* var(--i)));
+  clip-path: polygon(0 0, 59% 0, 100% 100%, 0 59%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  cursor: pointer;
+
+}
+.recipiente .rodar .numero span{
+  position: relative;
+  transform: rotate(45deg);
+  font-size: 2em;
+  font-weight: 700;
+  color: var(--cor1);
+  text-shadow: 3px 5px 2px rgba(0, 0, 0, 0.15);
+}
+.recipiente .rodar .numero span::after{
+  position: absolute;
+  font-size: 0.75em;
+  font-weight: 500;
+}
+
+.recipiente .rodar.elevado .numero {
+  transform: translateY(-10px);
+  transition: transform 1s ease-in-out;
+}
+.button{
+  position: relative;
+  background-color: var(--cor2);
+  color: var(--cor1);
+  font-family: var(--fonte-destaque);
+  font-size: 20px;
+  font-weight: 500;
+  border: 0;
+  border-radius: 10px;
+  height: 50px;
+  padding:  0 50px;
+  
+
+  transition: filter 0.8s;
+}
+
+footer{
+ position:fixed ;
+ bottom: 0;
+ text-align: center;
+ padding: 50px;
+}
+
+.button:not(:disabled):hover {
+  filter: brightness(0.6);
+}
+button{
+  cursor: pointer;
+}
+

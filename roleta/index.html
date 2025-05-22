@@ -1,0 +1,51 @@
+    <!DOCTYPE html>
+    <html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Roleta</title>
+        <link rel="stylesheet" href="roleta.css">
+
+        <script src="index.js" async></script>
+       <script src="../quiz/index.js"async></script>
+       <link rel="stylesheet" href="../quiz/style.css">
+
+    </head>
+    <body>
+        <div id="roleta" class="recipiente">
+            <div class="girarBtn">Spin</div>
+            <div class="rodar">
+                <div class="numero"  style="--i:1;--clr:#B7E9E0;"><span>1</span></div>
+                <div class="numero"  style="--i:2;--clr:#542B8C;"><span>2</span></div>
+                <div class="numero"  style="--i:3;--clr:#D93654;"><span>3</span></div>
+                <div class="numero"  style="--i:4;--clr:#F2B90F;"><span>4</span></div>
+                <div class="numero"  style="--i:5;--clr:#015A62;"><span>5</span></div>
+                <div class="numero"  style="--i:6;--clr:#BF754E;"><span>6</span></div>
+                <div class="numero"  style="--i:7;--clr:#230401;"><span>7</span></div>
+                <div class="numero"  style="--i:8;--clr:#4169e1;"><span>8</span></div>
+            </div>
+        </div>
+        <div id="msg" class="Recipient esconder">
+            <div class="questoesRec esconder">
+            </div>
+        </div>
+        <input type="hidden" id="acerto" value="0"/>
+        <input type="hidden" id="erro" value="0"/>
+        <footer>
+            <button class="button" id="finalizar" >Finalizar Jogo</button>
+        </footer>
+
+        <script>
+            const urlParams = new URLSearchParams(window. location.search);
+            var acerto = urlParams.get('acerto');
+            var erro = urlParams.get('erro');
+
+            document.getElementById( "acerto" ).value = acerto;
+            document.getElementById( "erro" ).value = erro;
+
+            var elemento_finalizar = document.getElementById( "finalizar");
+            elemento_finalizar.addEventListener( "click", function(){ finishGame( acerto, erro );}, false );
+
+        </script>
+    </body>
+    </html>

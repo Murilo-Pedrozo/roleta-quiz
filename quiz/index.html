@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="style.css">
+  <script src="index.js" async></script>
+
+  <title>Quiz </title>
+</head>
+<body>
+  <div class="Recipient">
+    <div class="questoesRec esconder">
+      <span class="questao esconder"></span> 
+      <div class="respostaRec">
+        <button class="resposta button">Resposta 2</button>
+        <button class="resposta button">Resposta 1</button>
+        <button class="resposta button">Resposta 3</button>
+        <button class="resposta button">Resposta 4</button>
+      </div>
+    </div> 
+  </div>
+
+  <input type="hidden" id="acerto" value="0"/>
+    <input type="hidden" id="erro" value="0"/> 
+    
+    <script>
+      const urlParams = new URLSearchParams(window.location.search);
+      const valor = urlParams.get('valor');
+      var acerto = urlParams.get('acerto');
+      var erro = urlParams.get('erro');
+
+      var elemento_acerto = document.getElementById( "acerto" );
+      var elemento_erro = document.getElementById( "erro" );
+
+      elemento_acerto.value = acerto;
+      elemento_erro.value = erro;
+
+      indexQuest = valor;
+      comecarJogo();
+    </script>
+</body>
+</html>
